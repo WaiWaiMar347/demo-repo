@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<select name="city" id="mySelect">
+<option value="Monywa,/CA">Monywa</option>
+<option value="Sagaig,/CA">Sagaing</option>
+<option value="Mandalay,/CA">Mandalay</option>
+<option value="Austria,/CA">Austria</option>
+<option value="Japan,/CA">Japan</option>
+</select>
+<select id="mySelect1"></select>
+<input type="text" value="0" id="txtIndex">
+<input type="button" value="Move" id="btnMove">
+<script type="text/javascript">
+var b1=document.getElementById("btnMove");
+b1.onclick=function(event){
+var selectbox1=document.getElementById("mySelect");
+var selectbox2=document.getElementById("mySelect1");
+var textbox=document.getElementById("txtIndex");
+selectbox2.appendChild(selectbox1.options[parseInt(textbox.value,10)]);
+};
+</script>
+</body>
+</html>
