@@ -1,21 +1,30 @@
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
+import RecordList from './RecordList'
 
 const List= () => {
 
 const [name,setName] = useState('')
 const [list,setList] = useState([])
 const [editList,setEditList] = useState(null)
+const [checkedItems, setCheckedItems] = useState({});
+
+//const [check, setCheck] = useState(false);
+//const [checkId,setCheckId]=useState([]);
 
 //Handle add or edit
 const handleSubmit = (e) => {
     e.preventDefault();
+    //let i=0
     if (editList !== null) {
       const updatedUsers = [...list];
       updatedUsers[editList] = name;
       setList(updatedUsers);
       setEditList(null);
     } else {
-      setList([...list, name]);
+      //setCheck(false);
+       setList([...list, name]);
+      //setCheckId([...checkId,ch])
+      //setCheck(false)
     }
     setName('');
   };
@@ -29,9 +38,22 @@ const handleDelete= (index) => {
     const filter=list.filter((_,i) => i!==index)
     setList(filter)
     if(index !== null){
+      const updatedCheckedItems = { ...checkedItems };
+    delete updatedCheckedItems[index];
+    setCheckedItems(updatedCheckedItems);
+
         setName('')
     }
 }
+
+const handleCheckboxChange = (index) => {
+   
+    setCheckedItems((prev) => ({
+      ...prev,
+      [index]: !prev[index]  //prev = { 0: true, 1: false } index = 1 
+
+    }));
+  };
 
   return (
     <div className='box-content '> 
@@ -48,21 +70,14 @@ const handleDelete= (index) => {
             <button  className="mt-10 border w-15 bg-red-900 h-8" type="submit">{editList !== null ? 'Update' : 'Save'}</button>
         </form>
         </div>
-        <div className='m-5 border w-full h-100'>
-            <h3 className='ms-3 text-lg underline'> Contents</h3>
-            <ul className='ms-3'>
-          {list.map((item, index) => (
-            <li className="" key={index}>
-              <button className=' w-50 h-8 mt-5 flex-none me-70'>{item}</button>
-              {/*<button id="b2" className=''>{item.Email}</button> */}
-              <button className="bg-blue-900 felx-1 w-20 h-8 mt-5 border px-2 me-1" onClick={() => handleEdit(index)}>Edit</button>
-              <button className='bg-teal-900 flex-1  w-20 h-8 mt-5 border px-2 mt'onClick={() => handleDelete(index)}>Delete</button>
-            </li>
-          ))}
-          
-        </ul>
-        </div>
         
+        <RecordList 
+        list={list} 
+        handleSubmit={handleSubmit} 
+        handleEdit={handleEdit} 
+        handleDelete={handleDelete} 
+        checkedItems={checkedItems}
+        handleCheckboxChange={handleCheckboxChange}/>
 
     </div>
   )
