@@ -1,2 +1,4 @@
-import React,{createContext} from "react";
- export const ThemeContext = createContext('light');
+import React,{createContext,useContext} from "react";
+ 
+// Create a Context
+export const UserContext = createContext('hello');

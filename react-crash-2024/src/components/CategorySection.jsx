@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import CategoryButton from './CategoryButton';
 
 const CategorySection = () => {
   
@@ -14,11 +15,13 @@ const CategorySection = () => {
   return (
       <section id="category-section" className="p-5">
       <p className="text-sm text-gray-500 mb-2"> {title}</p>
-      <div>
+      <div className='flex '>
+        <CategoryButton categoryName="all" current={true}/>
         {categories.map((category)=>(
-          <button  key={category} className="border border-black px-4 py-2 me-2">
-            {category}
-          </button>
+          <CategoryButton 
+          key={category} 
+          categoryName={category} 
+          current={false}/>
         )
         )}
       </div>

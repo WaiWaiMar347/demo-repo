@@ -1,9 +1,12 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
+//import { UserContext } from './MyContext'; 
 
 const MyChild = () => {
     
+  const user = useContext(UserContext); // consume the context
+
   return (
-    <div>MyChild</div>
+    <div>{user}</div>
   )
 }
 
