@@ -7,5 +7,25 @@
     "react": "^19.1.0",
     "tailwindcss": "^4.1.8",
     "vite": "^6.3.5"
-  }
+  },
+  "name": "demo-repo",
+  "version": "1.0.0",
+  "description": "Some Decription",
+  "main": "mod.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaiWaiMar347/demo-repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/WaiWaiMar347/demo-repo/issues"
+  },
+  "homepage": "https://github.com/WaiWaiMar347/demo-repo#readme"
 }
