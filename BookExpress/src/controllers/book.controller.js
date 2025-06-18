@@ -1,11 +1,21 @@
 const bookModel = require("../models/book.model");
 
-const createBook=async (req, res) => {
+const createBook= async (req, res) => {
   try {
+    // console.log(req.body, "req.body");
+    // console.log(req.file)
     const { title, author,category } = req.body;
+     const protocol = req.protocol;               // 'http' or 'https'
+      const host = req.get('host');                 // e.g., 'localhost:3000'
+          // e.g., '/some-route?query=123'
 
-   const createdBook= await bookModel.create({title,author,category}) ;
+  const fullUrl = `${protocol}://${host}`;
 
+  console.log(fullUrl , "server url"); // Full URL client requested
+    const imgUrl = `${fullUrl}/uploads/${req.file.filename}`;
+    console.log(imgUrl, "imgUrl <<<<<<<<<");
+   const createdBook= await bookModel.create({title,author,category , imgUrl}) ;
+  //const createdBook= await bookModel.create({title,author,category }) ;
    await createdBook.save();
     res.json(createdBook);
     //console.log(hashpassword);
